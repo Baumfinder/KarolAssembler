@@ -1,1 +1,4 @@
 /target
+out.kdw
+text.txt
+Cargo.lock
