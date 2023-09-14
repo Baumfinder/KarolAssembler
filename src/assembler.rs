@@ -1,4 +1,4 @@
-use std::{num::IntErrorKind, collections::{HashMap, VecDeque}};
+use std::collections::{HashMap, VecDeque};
 
 use derive_new::new;
 
@@ -152,8 +152,8 @@ fn zahl_aufteilen(a: isize) -> Vec<usize> {
     return Vec::from(b);
 }
 
-fn nums_to_world(eingabe: Vec<Instr>) -> KarolWelt {
-    let welt_breite = (eingabe.len() * 2 + 2).max(100);
+fn nums_to_world(eingabe: Vec<Instr>, mem_size: usize) -> KarolWelt {
+    let welt_breite = eingabe.len().max(mem_size) * 2 + 2;
     let mut welt = KarolWelt::new(welt_breite, 100, 10);
     //println!("breite: {}", welt_breite);
 
@@ -180,6 +180,6 @@ fn nums_to_world(eingabe: Vec<Instr>) -> KarolWelt {
     return welt;
 }
 
-pub fn assemble(eingabe: &String) -> String {
-    return nums_to_world(text_to_nums(eingabe)).to_string();
+pub fn assemble(eingabe: &String, mem_size: usize) -> String {
+    return nums_to_world(text_to_nums(eingabe), mem_size).to_string();
 }

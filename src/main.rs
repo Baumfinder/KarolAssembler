@@ -14,12 +14,14 @@ struct Args {
     infile: String,
     #[arg(short, long, default_value_t=String::from("out.kdw"))]
     outfile: String,
+    #[arg(short, long, default_value_t=50)]
+    mem_size: usize,
 }
 
 fn main() {
     let args = Args::parse();
     let infile_path = Path::new(&args.infile);
-    let mut outfile_path = Path::new(&args.outfile);
+    let outfile_path = Path::new(&args.outfile);
 
     let mut infile = match File::open(&infile_path) {
         Err(why) => panic!("Eingabedatei konnte nicht geöffnet werden: {}", why),
@@ -36,7 +38,7 @@ fn main() {
         Ok(_) => {},
     }
 
-    let assembled_text = assemble(&infile_text);
+    let assembled_text = assemble(&infile_text, args.mem_size);
 
     match outfile.write_all(assembled_text.as_bytes()) {
         Err(why) => panic!("Fehler beim Schreiben in die Ausgabedatei: {}", why),
