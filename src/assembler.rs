@@ -21,7 +21,7 @@ fn text_to_nums(eingabe: &String) -> Vec<Instr> {
     let mut i: usize = 0;
     for zeile in eingabe_iter.clone() {
         let aufgeteilt: Vec<&str> = zeile.trim().split(' ').collect();
-        if vec!["hlt", "lda", "sta", "add", "neg", "jmp", "jnz", "ldad", "stad", "mka"].contains(&aufgeteilt[0]) {
+        if vec!["hlt", "lda", "sta", "add", "neg", "jmp", "jz", "ldad", "stad", "mka"].contains(&aufgeteilt[0]) {
             i += 1;
         } else
         if vec!["call", "ret"].contains(&aufgeteilt[0]) {
@@ -83,7 +83,7 @@ fn text_to_nums(eingabe: &String) -> Vec<Instr> {
                     n_instr.arg = aufgeteilt[1].parse::<isize>().unwrap();
                 }
             },
-            "jnz" => {
+            "jz" => {
                 n_instr.op = 6;
                 if labels.contains_key(aufgeteilt[1]) {
                     n_instr.arg = labels[aufgeteilt[1]] as isize;
