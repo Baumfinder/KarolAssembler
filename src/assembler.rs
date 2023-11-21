@@ -123,6 +123,30 @@ fn text_to_nums(eingabe: &String) -> Vec<Instr> {
                 n_instr.op = 12;
                 n_instr.arg = 0;
             },
+            "jnz" => {
+                n_instr.op = 13;
+                if labels.contains_key(aufgeteilt[1]) {
+                    n_instr.arg = labels[aufgeteilt[1]] as isize;
+                } else {
+                    n_instr.arg = aufgeteilt[1].parse::<isize>().unwrap();
+                }
+            },
+            "jp" => {
+                n_instr.op = 14;
+                if labels.contains_key(aufgeteilt[1]) {
+                    n_instr.arg = labels[aufgeteilt[1]] as isize;
+                } else {
+                    n_instr.arg = aufgeteilt[1].parse::<isize>().unwrap();
+                }
+            },
+            "jn" => {
+                n_instr.op = 15;
+                if labels.contains_key(aufgeteilt[1]) {
+                    n_instr.arg = labels[aufgeteilt[1]] as isize;
+                } else {
+                    n_instr.arg = aufgeteilt[1].parse::<isize>().unwrap();
+                }
+            },
 
             _ => continue,
         }
