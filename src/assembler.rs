@@ -24,7 +24,7 @@ fn text_to_nums(eingabe: &String) -> Vec<Instr> {
         if vec!["hlt", "lda", "sta", "add", "neg", "jmp", "jz", "ldad", "stad", "mka"].contains(&aufgeteilt[0]) {
             i += 1;
         } else
-        if vec!["call", "ret"].contains(&aufgeteilt[0]) {
+        if vec!["call", "ret", "jnz", "jp", "jn"].contains(&aufgeteilt[0]) {
             i += 2;
         }
 
